@@ -1,7 +1,18 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 
 export default class Link extends React.Component {
+
+    onLogout() {
+        browserHistory.push('/')
+    }
+
     render () {
-        return <p>Das ist ein Link</p>
+        return (
+            <div>
+                <h1>Your Links</h1>
+                <button onClick={this.onLogout.bind(this)}>Logout</button>
+            </div>
+        )
     }
 }
