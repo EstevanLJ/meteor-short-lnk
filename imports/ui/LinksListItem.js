@@ -41,23 +41,24 @@ export default class LinksListItem extends React.Component {
         }
 
         return (
-            <p>{this.props.visitedCount} {visitMessage} {visitedMessage}</p>
+            <p className="item__message">{this.props.visitedCount} {visitMessage} {visitedMessage}</p>
         )
     }
     
     render() {
         return (
-            <div>
-                <p>{this.props.url}</p>
-                <p>{this.props.shortUrl}</p>
-                <p>{this.props.visible.toString()}</p>
+            <div className="item">
+                <h2>{this.props.url}</h2>
+                <p className="item__message">{this.props.shortUrl}</p>
                 {this.renderStats()}
-                <a href={this.props.shortUrl} target="_blank">Visit</a>
-                <button ref="copy" data-clipboard-text={this.props.shortUrl}>
+                <a href={this.props.shortUrl} target="_blank" className="button button--pill button--link">Visit</a>
+                <button ref="copy" data-clipboard-text={this.props.shortUrl} className="button button--pill">
                     {this.state.justCopied ? 'Copied' : 'Copy'}
                 </button>
 
-                <button onClick={ () => Meteor.call('links.setVisibility', this.props._id, !this.props.visible)}>
+                <button 
+                    onClick={ () => Meteor.call('links.setVisibility', this.props._id, !this.props.visible)}
+                    className="button button--pill button--link">
                     {this.props.visible ? 'Hide' : 'Unhide'}
                 </button>
             </div>
